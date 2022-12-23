@@ -3,22 +3,14 @@ package com.spike.dynamoDB.Dynamo;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.*;
-import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
-import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
-import com.amazonaws.services.dynamodbv2.document.utils.NameMap;
-import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
-import com.amazonaws.services.dynamodbv2.model.ReturnValue;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 @Service
 public class DynamoConnection {
 
     private AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
     private DynamoDB dynamoDB = new DynamoDB(client);
-    private final String TABLE_NAME = "notifications";
+    private final String TABLE_NAME = "Notification";
 
 
 
@@ -61,8 +53,8 @@ public class DynamoConnection {
 
         try {
 
-            Item item = new Item().withPrimaryKey("id", 2)
-                    .withNumber("cuit", 123456);
+            Item item = new Item().withPrimaryKey("Id", "1")
+                    .withNumber("Cuit", 123456);
 //                    .withString("Title", "Book 120 Title")
 //                    .withString("ISBN", "120-1111111111")
 //                    .withStringSet("Authors", new HashSet<>(Arrays.asList("Author12", "Author22")))

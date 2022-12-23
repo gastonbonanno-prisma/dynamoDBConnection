@@ -1,11 +1,13 @@
 package com.spike.dynamoDB.service;
 
-import com.spike.dynamoDB.entity.DynamoDBData;
+import com.spike.dynamoDB.Dynamo.DynamoConnection;
+import com.spike.dynamoDB.entity.Notification;
+import com.spike.dynamoDB.entity.DynamoDBDataDTO;
 import com.spike.dynamoDB.repository.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DataService implements DataServiceInterface {
@@ -13,12 +15,27 @@ public class DataService implements DataServiceInterface {
     @Autowired
     public DataRepository dataRepository;
 
-    public Iterable<DynamoDBData> findAll(){
+    @Autowired
+    public DynamoConnection dynamoConnection;
+
+    public Iterable<Notification> findAll(){
         return dataRepository.findAll();
     }
 
-//    public void createItem(){
-//        dataRepository.createItem();
-//    }
+    public Iterable<Notification> findByCuit(String cuit){
+        return dataRepository.findByCuit(cuit);
+    }
+
+    public void saveItem(DynamoDBDataDTO dto){
+        Notification notification = new Notification();
+        notification.setCuit(dto.getCuit());
+        notification.setUserId(dto.getUserId());
+        notification.setNotificationType(dto.getNotificationType());
+        notification.setLink(dto.getLink());
+        notification.setLinkExpirationDate(dto.getLinkExpirationDate());
+        notification.setRead(dto.getRead());
+
+        dataRepository.save(notification);
+    }
 
 }

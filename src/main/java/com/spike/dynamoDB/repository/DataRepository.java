@@ -1,33 +1,28 @@
 package com.spike.dynamoDB.repository;
 
-import com.amazonaws.services.dynamodbv2.document.Item;
-import com.spike.dynamoDB.Dynamo.DynamoConnection;
-import com.spike.dynamoDB.entity.DynamoDBData;
+import com.spike.dynamoDB.entity.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public class DataRepository {
 
-//    @Autowired
-//    private DynamoConnection dynamoConnection;
-//
-//
-//    public String findAll(){
-//        return dynamoConnection.retrieveItem();
-//    }
-//
-//    public void createItem(){
-//        dynamoConnection.createItem();
-//    }
-
     @Autowired
     DataRepositoryInterface dataRepositoryInterface;
 
-    public Iterable<DynamoDBData> findAll(){
+    public Iterable<Notification> findAll(){
         return dataRepositoryInterface.findAll();
     }
 
+    public Iterable<Notification> findByCuit(String cuit){
+        return dataRepositoryInterface.findByCuit(cuit);
+    }
 
+    public void save(Notification data){
+        System.out.println("save data: "+data);
+        dataRepositoryInterface.save(data);
+    }
 
 }
