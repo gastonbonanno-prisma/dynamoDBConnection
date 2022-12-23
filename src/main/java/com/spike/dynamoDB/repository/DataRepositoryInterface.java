@@ -10,8 +10,5 @@ import java.util.Optional;
 @EnableScan
 @Repository
 public interface DataRepositoryInterface extends CrudRepository<Notification, String> {
-
-    Iterable<Notification> findByCuit(String cuit);
-
-
+    Iterable<Notification> findByCuit(Long cuit);
 }

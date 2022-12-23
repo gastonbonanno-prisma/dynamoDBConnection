@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class DataService implements DataServiceInterface {
+public class DataService {
 
     @Autowired
     public DataRepository dataRepository;
@@ -22,7 +22,7 @@ public class DataService implements DataServiceInterface {
         return dataRepository.findAll();
     }
 
-    public Iterable<Notification> findByCuit(String cuit){
+    public Iterable<Notification> findByCuit(Long cuit){
         return dataRepository.findByCuit(cuit);
     }
 
@@ -37,5 +37,6 @@ public class DataService implements DataServiceInterface {
 
         dataRepository.save(notification);
     }
+
 
 }

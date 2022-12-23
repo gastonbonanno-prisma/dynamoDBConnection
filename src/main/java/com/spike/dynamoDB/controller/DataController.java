@@ -29,8 +29,7 @@ public class DataController {
     }
 
     @GetMapping(path = "/cuit")
-    public ResponseEntity<Iterable<Notification>> findByCuit(@RequestParam String cuit){
+    public ResponseEntity<Iterable<Notification>> findByCuit(@RequestParam Long cuit){
         return new ResponseEntity<>(dataService.findByCuit(cuit), HttpStatus.OK);
     }
-
 }

@@ -16,7 +16,7 @@ public class DataRepository {
         return dataRepositoryInterface.findAll();
     }
 
-    public Iterable<Notification> findByCuit(String cuit){
+    public Iterable<Notification> findByCuit(Long cuit){
         return dataRepositoryInterface.findByCuit(cuit);
     }
 
